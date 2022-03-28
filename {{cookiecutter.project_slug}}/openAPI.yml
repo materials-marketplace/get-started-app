@@ -1,0 +1,53 @@
+openapi: 3.0.0
+
+info:
+  title: API of {{ cookiecutter.app_name }}
+  description: OpenAPI Specification of the {{ cookiecutter.app_name }} for MarketPlace
+  version: "{{cookiecutter.version}}"
+  x-application-name: "{{ cookiecutter.app_name }}"
+  x-oauth-client:
+    callback: "{{ cookiecutter.app_host }}/callback"
+    scopes: {{ cookiecutter.scopes }}
+  x-contacts:
+    - {{ cookiecutter.email }}
+  x-mp-api: https://marketplace.org/ontology/v1_0_0/api_spec
+  x-logo: "{{ cookiecutter.app_host }}/app/static/images/logo.png"
+  x-products:
+    - name: Product A
+      product-id:
+
+servers:
+  - url: "{{ cookiecutter.app_host }}"
+
+paths:
+  /heartbeat:
+    get:
+      security:
+        - bearerAuth: []
+      description: Returns a heartbeat
+      operationId: heartbeat
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Invalid Auth Token
+        '406':
+          description: Not Acceptable
+  /:
+    get:
+      security:
+        - bearerAuth: []
+      description: frontend path
+      operationId: frontend
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Page not found
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

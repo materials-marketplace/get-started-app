@@ -1,0 +1,10 @@
+{
+    "email": "user@example.com",
+    "app_name": "Get started app",
+    "project_slug": "{{ cookiecutter.app_name.lower().replace(' ', '_') }}",
+    "app_short_description": "Basic Materials Marketplace application",
+    "version": "0.1.0",
+    "deploy_on_heroku": ["Yes", "No"],
+    "app_host": "https://{% if cookiecutter.deploy_on_heroku == 'Yes'%}{{ cookiecutter.project_slug }}.herokuapp.com{%endif%}",
+    "scopes": "['email', 'profile', 'openid']"
+}
