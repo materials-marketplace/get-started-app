@@ -1,4 +1,5 @@
 """Web app for {{ cookiecutter.app_name }}."""
+
 import json
 import os
 from flask import Flask, request, redirect, send_file
